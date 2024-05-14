@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Home | Blog{% endblock title %}
+{% block homeactive %} active {% endblock homeactive %}
+{% block body %}
+<div class="container">
+    <div class="jumbotron my-3">
+        <h1 class="display-4">Welcome to My HealthBlog!</h1>
+        <p class="lead">This is a simple blog post website. On this website you can upload any blog post and read the
+            uploaded blog post done by other.</p>
+        <hr class="my-4">
+        <p>There are many trends happening in the world in the field of medical science. And being update with the
+            trending medical updates is necessary. Medical Sciences are now happening with the AI.</p>
+        <a class="btn btn-primary btn-lg" href="/blog" role="button">Go to Blog</a>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Popular Blogposts</h2>
+    {% for post in allPosts %}
+    <div
+        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">New Post</strong>
+            <h3 class="mb-0"><a class="text-dark" href="/blog/{{post.sno}}">{{post.title}}</a></h3>
+            <div class="mb-1 text-muted">{{post.timeStamp}}</div>
+            <p class="card-text mb-auto">{{post.content | truncatechars:200 }}</p>
+            <div class="my-2">
+                <a href="/blog/{{post.sno}}" role="button" class="btn btn-primary">Continue reading</a>
+            </div>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <div class="col-auto d-none d-lg-block">
+                <img class="bd-placeholder-img" width="200" height="250" src = "media/{{post.image}}"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                </img>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}
